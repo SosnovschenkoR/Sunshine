@@ -1,24 +1,23 @@
 package com.example.android.sunshine.app;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    private EditText textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        textView = (EditText)findViewById(R.id.editText);
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new ForecastFragment())
                     .commit();
         }
     }
@@ -43,19 +42,19 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
+    /*void CheckNetworkStatus() {
+        final ConnectivityManager connMgr = (ConnectivityManager) this
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        final android.net.NetworkInfo wifi = connMgr
+                .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        final android.net.NetworkInfo mobile = connMgr
+                .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (wifi.isAvailable()) {
+            Toast.makeText(this, "Wifi", Toast.LENGTH_LONG).show();
+        } else if (mobile.isAvailable()) {
+            Toast.makeText(this, "Mobile 3G ", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "No Network ", Toast.LENGTH_LONG).show();
         }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-    }
+    }*/
 }
