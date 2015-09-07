@@ -8,6 +8,11 @@
     android:paddingTop="20dp"
     android:weightSum="1">
 
+    <ImageView
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:id="@+id/imageView" />
+
     <TextView
         android:id="@+id/list_item_forecast_num"
         android:layout_width="wrap_content"

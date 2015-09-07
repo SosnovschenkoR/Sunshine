@@ -1,5 +1,6 @@
 package com.example.android.sunshine.app;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -34,7 +35,6 @@ import java.util.Arrays;
  * A placeholder fragment containing a simple view.
  */
 public class ForecastFragment extends Fragment {
-
     WeatherAdatapter weatherAdatapter;
 
     public ForecastFragment() {
@@ -43,7 +43,7 @@ public class ForecastFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.forecastfragment, menu);
+        inflater.inflate(R.menu.forecast, menu);
     }
 
     @Override
@@ -65,14 +65,6 @@ public class ForecastFragment extends Fragment {
         this.setHasOptionsMenu(true);
 
         ArrayList<String> list = new ArrayList<String>();
-        /*list.add("Today-Sunny-88/63");
-        list.add("Tomorrow-Foggy-70/46");
-        list.add("Wednesday-Cloudy-72/63");
-        list.add("Thursday-Snowy-50/43");
-        list.add("Friday-Sunny-88/63");
-        list.add("Saturday-Windy-88/75");
-        list.clear();*/
-
         Resources res = getResources();
         list.addAll(Arrays.asList(res.getStringArray(R.array.wheather_items)));
 
@@ -88,12 +80,20 @@ public class ForecastFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String forecast = (String) weatherAdatapter.getItem(position);
-                Toast.makeText(getActivity(), forecast, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), forecast, Toast.LENGTH_SHORT).show();
+                sendMessage(view, forecast);
             }
         });
 
         return rootView;
 
+    }
+
+    /** Called when the user clicks the Send button */
+    public void sendMessage(View view, String forecast) {
+        Intent intent = new Intent(getActivity(), ForecastDetail.class);
+        intent.putExtra(Intent.EXTRA_TEXT, forecast);
+        startActivity(intent);
     }
 
     public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {

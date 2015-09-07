@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -52,6 +53,10 @@ public class WeatherAdatapter extends ArrayAdapter {
             view = inflater.inflate(resource, viewGroup, false);
         }
         //Обявляем наши текствьюшки и связываем их с разметкой
+        ImageView img = (ImageView) view.findViewById(R.id.imageView);
+        if (i % 2 == 0) img.setImageResource(R.drawable.sunny);
+        else
+            img.setImageResource(R.drawable.fog);
         TextView textView = (TextView) view.findViewById(R.id.list_item_forecast_textview);
         TextView textNum = (TextView) view.findViewById(R.id.list_item_forecast_num);
 

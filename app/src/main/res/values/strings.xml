@@ -16,6 +16,7 @@
         <item>Saturday-Windy-88/75</item>
 
     </string-array>
-
+    <string name="title_activity_weather_detail">WeatherDetail</string>
+    <string name="title_activity_forecast_detail">Forecast Detail</string>
 
 </resources>
